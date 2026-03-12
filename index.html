@@ -37,9 +37,28 @@
         /* Header Styling */
         header {
             text-align: center;
-            padding: 4rem 1rem 3rem;
+            padding: 2rem 1rem 2rem;
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, transparent 100%);
             border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+            margin: 0 auto 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.9);
+            transform: scale(1.05);
         }
 
         h1 {
@@ -168,13 +187,135 @@
         li {
             margin-bottom: 0.6rem;
         }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(11, 17, 32, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 30px rgba(56, 189, 248, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: block;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(56, 189, 248, 0.3) 100%);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), 0 0 50px rgba(56, 189, 248, 0.3);
+            transform: translateY(-3px);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-link:active {
+            transform: translateY(0);
+        }
+
+        /* Body padding for fixed navbar */
+        body {
+            padding-top: 70px;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section IDs for navigation */
+        #summary, #skills, #experience, #projects, #education, #awards {
+            scroll-margin-top: 80px;
+        }
+
+        /* Responsive navigation */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            
+            .nav-menu {
+                gap: 0.3rem;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.7rem;
+            }
+            
+            body {
+                padding-top: 60px;
+            }
+
+            /* Adjust profile picture for mobile */
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <canvas id="network-canvas"></canvas>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#summary" class="nav-link">Summary</a></li>
+            <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+            <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+            <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
+        </ul>
+    </nav>
+
     <header>
+        <img src="Untitled.jpeg" alt="Rahul Bose Profile Picture" class="profile-pic">
         <h1>Rahul Bose</h1>
         <div class="contact-links">
             <a href="https://maps.google.com/?q=Bengaluru,+Karnataka" target="_blank" title="Open in Google Maps">
@@ -188,16 +329,15 @@
             </a>
         </div>
         <p><a href="https://www.linkedin.com/in/rahul-bose-750645158" target="_blank" class="social-link">🔗 LinkedIn Profile</a></p>
-    </header>
 
     <div class="container">
         
-        <section>
+        <section id="summary">
             <h2>Professional Summary</h2>
             <p>AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up.</p>
         </section>
 
-        <section>
+        <section id="skills">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-tag">Python Coding, TensorFlow, Keras, LLMs, RAG Architecture</div>
@@ -215,7 +355,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="experience">
             <h2>Professional Experience</h2>
             
             <h3>Cerebronics Technologies Pvt Ltd. | Bengaluru, Karnataka</h3>
@@ -246,7 +386,7 @@
             </ul>
         </section>
 
-        <section>
+        <section id="projects">
             <h2>Academic Projects</h2>
             <ul>
                 <li><strong>Hyper Security System (IoT & AI):</strong> Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands.</li>
@@ -255,7 +395,7 @@
             </ul>
         </section>
 
-        <section>
+        <section id="education">
             <h2>Education</h2>
             <ul>
                 <li><strong>B.Tech in Mechatronics</strong> | Kalinga Institute of Industrial Technology, Bhubaneswar | CGPA: 7.73 | 2019-2022.</li>
@@ -263,7 +403,7 @@
             </ul>
         </section>
 
-        <section>
+        <section id="awards">
             <h2>Awards & Certifications</h2>
             <ul>
                 <li><strong>Robotics Awards:</strong> Acquired 1st Position in Defence Bot and 3rd Position in Robo-War at CTTC Robotics Events, Bhubaneswar.</li>
@@ -281,10 +421,10 @@
         let width, height;
         let particles = [];
         
-        // Configuration
-        const particleCount = 70;
-        const connectionDistance = 150;
-        const particleSpeed = 0.5;
+        // Configuration - Optimized for smooth performance
+        const particleCount = 50;
+        const connectionDistance = 120;
+        const particleSpeed = 0.3;
 
         function resizeCanvas() {
             width = window.innerWidth;
@@ -314,7 +454,8 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.8)';
+                // Brighter particle color
+                ctx.fillStyle = 'rgba(100, 220, 255, 1)';
                 ctx.fill();
             }
         }
@@ -335,7 +476,8 @@
                 p.draw();
             });
 
-            // Draw connecting lines (Neural Network effect)
+            // Draw connecting lines (Neural Network effect) - optimized
+            ctx.beginPath();
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -343,14 +485,13 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < connectionDistance) {
-                        ctx.beginPath();
+                        const opacity = 1 - (distance / connectionDistance);
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        // Opacity based on distance
-                        const opacity = 1 - (distance / connectionDistance);
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.5})`;
+                        ctx.strokeStyle = `rgba(100, 220, 255, ${opacity * 0.6})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
+                        ctx.beginPath();
                     }
                 }
             }
