@@ -3,689 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Bose | AI Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Rahul Bose - AI & Mechatronics Engineer</title>
     <style>
         :root {
-            --bg-color: #0a0a0f;
-            --text-main: #e2e8f0;
+            --bg-color: #0b1120;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-glow: #38bdf8;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #00d4ff;
-            --accent-secondary: #8b5cf6;
-            --card-bg: rgba(30, 41, 59, 0.6);
-            --hover-transition: all 0.3s ease;
-            --glow-color: rgba(0, 212, 255, 0.5);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-muted);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Optimized Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #0a0a0f 0%, #0f172a 100%);
-        }
-
-        #neural-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            will-change: transform;
-        }
-
-        /* Optimized Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 20s linear infinite;
-        }
-
-        .particle.purple {
-            background: var(--accent-secondary);
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) translate3d(0,0,0); opacity: 0; }
-            5% { opacity: 0.4; }
-            95% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) translate3d(0,0,0); opacity: 0; }
-        }
-
-        /* Navbar with Glassmorphism */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
-            text-align: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin: 0 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--hover-transition);
-            position: relative;
-            padding: 0.4rem 0.8rem;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        nav a::after {
+        /* Futuristic Background Glow */
+        body::before {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulse 10s infinite alternate;
         }
 
-        nav a:hover::after {
-            width: 100%;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
-        /* Header Section */
+        /* Header Styling */
         header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            animation: pulse-glow 6s ease-in-out infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+            padding: 4rem 1rem;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            font-size: 3rem;
+            text-transform: uppercase;
             letter-spacing: 3px;
-            background: linear-gradient(135deg, #fff 0%, var(--accent) 60%, var(--accent-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .typewriter-container {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            height: 2rem;
-            position: relative;
-            z-index: 1;
+        header p {
+            font-size: 1.1rem;
+            margin: 0.2rem 0;
         }
 
-        .typewriter-container::before {
-            content: '<';
-            color: var(--accent-secondary);
-            margin-right: 0.4rem;
-        }
-
-        .typewriter-container::after {
-            content: '/>';
-            color: var(--accent-secondary);
-            margin-left: 0.4rem;
-        }
-
-        #typewriter {
-            color: var(--accent);
-        }
-
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-links a {
-            color: var(--text-muted);
+        a {
+            color: var(--accent-glow);
             text-decoration: none;
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            transition: var(--hover-transition);
-            background: rgba(30, 41, 59, 0.3);
-            backdrop-filter: blur(8px);
+            transition: text-shadow 0.3s ease;
         }
 
-        .contact-links a:hover {
-            color: var(--bg-color);
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-color: var(--accent);
-            transform: translateY(-3px);
+        a:hover {
+            text-shadow: 0 0 8px var(--accent-glow);
         }
 
-        /* Sections */
-        section {
-            max-width: 900px;
+        /* Main Container */
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
+            padding: 2rem;
+        }
+
+        /* Card Sections */
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
         }
 
         h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--accent);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            color: var(--text-main);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
             padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-            position: relative;
+            margin-top: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        h3 {
+            color: var(--accent-glow);
+            margin-bottom: 0.2rem;
         }
 
-        /* Skills */
-        .skills-container {
+        .subtitle {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Tags */
+        .skills-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
         }
 
         .skill-tag {
-            background: rgba(30, 41, 59, 0.5);
-            color: var(--text-main);
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-glow);
             padding: 0.5rem 1rem;
-            border-radius: 8px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            transition: var(--hover-transition);
-            cursor: default;
-            border: 1px solid rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            transition: background 0.3s ease;
         }
 
         .skill-tag:hover {
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            color: var(--bg-color);
-            transform: translateY(-3px);
-        }
-
-        /* Timeline & Project Cards */
-        .timeline-item, .project-card {
-            background: rgba(30, 41, 59, 0.4);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            transition: var(--hover-transition);
-            border: 1px solid rgba(0, 212, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-item::before, .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.3s ease;
-        }
-
-        .timeline-item:hover, .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
-        }
-
-        .timeline-item:hover::before, .project-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .job-title, .project-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 0.3rem;
-        }
-
-        .company-date {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
+            background: rgba(56, 189, 248, 0.2);
         }
 
         ul {
-            margin-left: 1.2rem;
-            color: var(--text-muted);
+            padding-left: 1.2rem;
         }
-
+        
         li {
-            margin-bottom: 0.4rem;
-        }
-
-        /* Fade-in Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; letter-spacing: 2px; }
-            .typewriter-container { font-size: 1.1rem; }
-            nav a { margin: 0 0.5rem; font-size: 0.8rem; }
-            section { padding: 3rem 1.5rem; }
-            .timeline-item, .project-card { padding: 1.2rem; }
-        }
-
-        /* Optimized Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 3px;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-animation"></div>
-    <canvas id="neural-canvas"></canvas>
-    
-    <div class="particles" id="particles"></div>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-    </nav>
-
-    <header id="home">
-        <h1>RAHUL BOSE</h1>
-        <div class="typewriter-container">
-            <span id="typewriter"></span><span class="cursor">|</span>
-        </div>
-        <div class="contact-links">
-            <a href="mailto:rahul.bose1597@gmail.com">rahul.bose1597@gmail.com</a>
-            <a href="tel:+916289764787">+91 6289764787</a>
-            <a href="https://www.linkedin.com/in/rahul-bose-750645158/" target="_blank">LinkedIn</a>
-            <a href="#">Bengaluru, Karnataka</a>
-        </div>
+    <header>
+        <h1>Rahul Bose [cite: 1]</h1>
+        <p>Bengaluru, Karnataka | +91 6289764787 | rahul.bose1597@gmail.com [cite: 2]</p>
+        <p><a href="https://www.linkedin.com/in/rahul-bose-750645158" target="_blank">LinkedIn Profile [cite: 2]</a></p>
     </header>
 
-    <section id="about" class="fade-in">
-        <h2>Professional Summary</h2>
-        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-muted);">
-            AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up.
-        </p>
-    </section>
-
-    <section id="skills" class="fade-in">
-        <h2>Core Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-tag">Python</div>
-            <div class="skill-tag">TensorFlow & Keras</div>
-            <div class="skill-tag">LLMs & Gemini API</div>
-            <div class="skill-tag">Computer Vision</div>
-            <div class="skill-tag">Machine Learning (SVM)</div>
-            <div class="skill-tag">Docker</div>
-            <div class="skill-tag">React & Node.js</div>
-            <div class="skill-tag">Flask</div>
-            <div class="skill-tag">REST APIs & JSON</div>
-            <div class="skill-tag">SQL & MongoDB</div>
-            <div class="skill-tag">ROS</div>
-            <div class="skill-tag">Arduino IDE & ESP32</div>
-            <div class="skill-tag">Siemens PLC & KUKA</div>
-            <div class="skill-tag">Git/GitHub</div>
-        </div>
-    </section>
-
-    <section id="experience" class="fade-in">
-        <h2>Professional Experience</h2>
+    <div class="container">
         
-        <div class="timeline-item">
-            <div class="job-title">Robotics Engineer (Trainee)</div>
-            <div class="company-date">Cerebronics Technologies Pvt Ltd. | Bengaluru | Feb 2024 - May 2024</div>
-            <ul>
-                <li>Physically built and wired the structure and control systems for a 6-axis robotic arm.</li>
-                <li>Wrote the core programming for ESP32 microcontrollers using the Arduino IDE to handle precise mechanical movements.</li>
-                <li>Integrated an ESP32 CAM module to capture live object photos and securely upload that data to cloud storage.</li>
-                <li>Applied ROS and AI principles to smooth out and improve the system's automated movements.</li>
-            </ul>
-        </div>
+        <section>
+            <h2>Professional Summary [cite: 3]</h2>
+            <p>AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. [cite: 4] I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. [cite: 5] With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up. [cite: 6]</p>
+        </section>
 
-        <div class="timeline-item">
-            <div class="job-title">Independent AI Engineer</div>
-            <div class="company-date">Independent AI & Web Development | 2024 - Present</div>
-            <ul>
-                <li><strong>Full-Stack Web Applications:</strong> Built and successfully deployed interactive web apps using Flask, React, and Node.js, relying on Docker to keep the environments neatly managed.</li>
-                <li><strong>Conversational AI:</strong> Designed and seamlessly integrated AI chatbots using the Gemini API to help automate user responses and streamline daily interactions.</li>
-                <li><strong>Data Analysis Systems:</strong> Wrote custom machine learning scripts dedicated to smart system monitoring and predictive data analysis.</li>
-            </ul>
-        </div>
+        <section>
+            <h2>Technical Skills [cite: 7]</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Python, TensorFlow, Keras, LLMs [cite: 8]</div>
+                <div class="skill-tag">Computer Vision & Image Processing [cite: 8]</div>
+                <div class="skill-tag">SVM (Support Vector Machines) [cite: 8]</div>
+                <div class="skill-tag">C/C#, REST APIs, JSON [cite: 9]</div>
+                <div class="skill-tag">Docker, Flask, React, Node.js [cite: 9]</div>
+                <div class="skill-tag">Git/GitHub, JIRA [cite: 9]</div>
+                <div class="skill-tag">SQL, MySQL, MongoDB, PostgreSQL [cite: 10]</div>
+                <div class="skill-tag">ROS (Robotic Operating System) [cite: 11]</div>
+                <div class="skill-tag">Arduino IDE, ESP32, Siemens PLC [cite: 11]</div>
+                <div class="skill-tag">KUKA, Festo Hydraulics/Pneumatics [cite: 11]</div>
+                <div class="skill-tag">MATLAB [cite: 11]</div>
+            </div>
+        </section>
 
-        <div class="timeline-item">
-            <div class="job-title">Project Trainee (Intern)</div>
-            <div class="company-date">APLG Info Solutions | Hyderabad | May 2021 - Sep 2021</div>
-            <ul>
-                <li>Wrote the foundational sample code for an AI application utilizing MATLAB's robust image processing tools.</li>
-                <li>Built a Support Vector Machine (SVM) model capable of detecting and classifying human facial emotions, such as happiness, sadness, and anger.</li>
-                <li>Used local directional patterns to accurately extract facial features across varying lighting conditions and different face regions.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects" class="fade-in">
-        <h2>Academic Projects</h2>
-        
-        <div class="project-card">
-            <div class="project-title">Hyper Security System (IoT & AI)</div>
-            <div class="company-date">B.Tech Minor Project</div>
-            <p style="color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6;">Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands.</p>
-        </div>
-
-        <div class="project-card">
-            <div class="project-title">Automated Medical Dispenser</div>
-            <div class="company-date">B.Tech Major Project</div>
-            <p style="color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6;">Built an automatic medicine dispenser from scratch using an Arduino Mega 2560 and a GSM module. Programmed it to safely dispense pills and play audio alerts at scheduled times, specifically designed to help dementia patients stay on track with their medication.</p>
-        </div>
-    </section>
-
-    <section id="education" class="fade-in">
-        <h2>Education & Certifications</h2>
-        
-        <div class="timeline-item">
-            <div class="job-title">B.Tech in Mechatronics</div>
-            <div class="company-date">Kalinga Institute of Industrial Technology | CGPA: 7.73 | 2019 - 2022</div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="job-title">Diploma in Mechatronics</div>
-            <div class="company-date">Central Tool Room and Training Centre | CGPA: 6.0 | 2015 - 2018</div>
-        </div>
-
-        <div style="margin-top: 1.5rem;">
-            <h3 style="color: white; margin-bottom: 0.8rem; font-family: 'Orbitron', sans-serif; font-size: 1.1rem;">Certifications</h3>
-            <ul>
-                <li>Improving Deep Neural Networks: Hyper-parameter Tuning, Regularization and Optimization (Coursera)</li>
-                <li>Technical Certifications: Big Data (Intermediate), TensorFlow, Keras, SQL, Manual Testing, GIT/GitHub</li>
-                <li>Mechanical Design Associate (Dassault Systemes Solidworks)</li>
-            </ul>
-        </div>
-    </section>
-
-    <script>
-        // Optimized Neural Network Canvas Animation
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d', { alpha: true });
-        
-        let width, height;
-        
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Optimized Node class with squared distance calculations
-        const nodes = [];
-        const numNodes = 45;
-        const connectionDistance = 120;
-        const connectionDistanceSq = connectionDistance * connectionDistance;
-
-        class Node {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 1.5 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-        }
-
-        for (let i = 0; i < numNodes; i++) {
-            nodes.push(new Node());
-        }
-
-        let animationId;
-
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
+        <section>
+            <h2>Professional Experience [cite: 12]</h2>
             
-            // Draw nodes
-            for (let i = 0; i < numNodes; i++) {
-                const node = nodes[i];
-                node.update();
-                
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
-                ctx.fill();
-            }
-            
-            // Draw connections (optimized - only check nearby nodes)
-            for (let i = 0; i < numNodes; i++) {
-                for (let j = i + 1; j < numNodes; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const distSq = dx * dx + dy * dy;
+            <h3>Cerebronics Technologies Pvt Ltd. | Bengaluru, Karnataka [cite: 13]</h3>
+            <p class="subtitle">Robotics Engineer (Trainee) | Feb 2024 - May 2024 [cite: 14]</p>
+            <ul>
+                <li>Physically built and wired the structure and control systems for a 6-axis robotic arm. [cite: 15]</li>
+                <li>Wrote the core programming for ESP32 microcontrollers using the Arduino IDE to handle precise mechanical movements. [cite: 16]</li>
+                <li>Integrated an ESP32 CAM module to capture live object photos and securely upload that data to cloud storage. [cite: 17]</li>
+                <li>Applied ROS (Robotic Operating System) and AI principles to smooth out and improve the system's automated movements. [cite: 18]</li>
+            </ul>
 
-                    if (distSq < connectionDistanceSq) {
-                        const alpha = 1 - (distSq / connectionDistanceSq);
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha * 0.12})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-            }
+            <br>
+            <h3>APLG Info Solutions | Hyderabad, Telangana [cite: 19]</h3>
+            <p class="subtitle">Project Trainee (Intern) | May 2021 - Sep 2021 [cite: 20]</p>
+            <ul>
+                <li>Wrote the foundational sample code for an AI application utilizing MATLAB's robust image processing tools. [cite: 21]</li>
+                <li>Built a Support Vector Machine (SVM) model capable of detecting and classifying human facial emotions, such as happiness, sadness, and anger. [cite: 22]</li>
+                <li>Used local directional patterns to accurately extract facial features across varying lighting conditions and different face regions. [cite: 23]</li>
+            </ul>
 
-            animationId = requestAnimationFrame(draw);
-        }
-        
-        draw();
+            <br>
+            <h3>Independent AI Development [cite: 24]</h3>
+            <p class="subtitle">Independent AI Engineer | 2024 - Present [cite: 24]</p>
+            <ul>
+                <li><strong>Full-Stack Web Applications:</strong> Built and successfully deployed interactive web apps using Flask, React, and Node.js, relying on Docker to keep the environments neatly managed. [cite: 25]</li>
+                <li><strong>Conversational AI:</strong> Designed and seamlessly integrated AI chatbots using the Gemini API to help automate user responses and streamline daily interactions. [cite: 26]</li>
+                <li><strong>Data Analysis Systems:</strong> Scripted custom machine learning codes dedicated to smart system monitoring and predictive data analysis. [cite: 27]</li>
+            </ul>
+        </section>
 
-        // Optimized Floating Particles
-        const particlesContainer = document.getElementById('particles');
-        const numParticles = 12;
+        <section>
+            <h2>Academic Projects [cite: 28]</h2>
+            <ul>
+                <li><strong>Hyper Security System (IoT & AI):</strong> Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. [cite: 29] I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands. [cite: 30]</li>
+                <li><strong>Automated Medical Dispenser:</strong> Built an automatic medicine dispenser from scratch using an Arduino Mega 2560 and a GSM module. [cite: 31] Programmed it to safely dispense pills and play audio alerts at scheduled times, specifically designed to help dementia patients stay on track with their medication. [cite: 32]</li>
+                <li><strong>i-Stick (Smart Mobility Aid):</strong> Built a sensory walking stick for visually impaired individuals using an Arduino Nano, three ultrasonic sensors, and miniature vibration feedback motors. [cite: 33] Programmed the device to provide distinct directional vibration patterns, allowing the user to easily detect and navigate around nearby obstacles. [cite: 34]</li>
+            </ul>
+        </section>
 
-        for (let i = 0; i < numParticles; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle' + (i % 3 === 0 ? ' purple' : '');
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
+        <section>
+            <h2>Education [cite: 35]</h2>
+            <ul>
+                <li><strong>B.Tech in Mechatronics</strong> | Kalinga Institute of Industrial Technology, Bhubaneswar | CGPA: 7.73 | 2019-2022. [cite: 36]</li>
+                <li><strong>Diploma in Mechatronics</strong> | Central Tool Room and Training Centre, Bhubaneswar | CGPA: 6.0 | 2015-2018. [cite: 37]</li>
+            </ul>
+        </section>
 
-        // Typewriter Effect
-        const words = ["AI Engineer", "Mechatronics Specialist", "IoT Developer", "Robotics Enthusiast"];
-        let wordIndex = 0;
-        
-        function typingEffect() {
-            const word = words[wordIndex];
-            let charIndex = 0;
-            
-            function type() {
-                if (charIndex < word.length) {
-                    document.getElementById('typewriter').innerHTML = word.substring(0, charIndex + 1);
-                    charIndex++;
-                    setTimeout(type, 100);
-                } else {
-                    setTimeout(deleteWord, 2000);
-                }
-            }
-            type();
-        }
+        <section>
+            <h2>Awards & Certifications [cite: 38]</h2>
+            <ul>
+                <li><strong>Robotics Awards:</strong> Acquired 1st Position in Defence Bot and 3rd Position in Robo-War at CTTC Robotics Events, Bhubaneswar. [cite: 39]</li>
+                <li><strong>State Award:</strong> Received the "Rajya Puraskar" in Bharat Scouts & Guides from the Honorable Governor of Odisha. [cite: 40]</li>
+                <li><strong>Certifications:</strong> Improving Deep Neural Networks (Coursera), Mechanical Design Associate (Dassault Systemes Solidworks), TensorFlow, Keras, SQL, GIT/GitHub, Azure AI-900, and Prompt Engineering Basics. [cite: 41]</li>
+            </ul>
+        </section>
 
-        function deleteWord() {
-            const word = words[wordIndex];
-            let charIndex = word.length;
-            
-            function del() {
-                if (charIndex > 0) {
-                    document.getElementById('typewriter').innerHTML = word.substring(0, charIndex - 1);
-                    charIndex--;
-                    setTimeout(del, 40);
-                } else {
-                    wordIndex = (wordIndex + 1) % words.length;
-                    setTimeout(typingEffect, 500);
-                }
-            }
-            del();
-        }
-
-        typingEffect();
-
-        // Smooth Scrolling for Nav
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                window.scrollTo({
-                    top: section.offsetTop - 60,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Optimized Scroll Fade-in Animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -30px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        fadeElements.forEach(el => observer.observe(el));
-
-        // Show first section after load
-        setTimeout(() => {
-            document.getElementById('about').classList.add('visible');
-        }, 200);
-    </script>
+    </div>
 </body>
 </html>
-
