@@ -23,27 +23,23 @@
             overflow-x: hidden;
         }
 
-        /* Futuristic Background Glow */
-        body::before {
-            content: '';
+        /* Neural Network Canvas Background */
+        #network-canvas {
             position: fixed;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            animation: pulse 10s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
         }
 
         /* Header Styling */
         header {
             text-align: center;
-            padding: 4rem 1rem;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
         }
 
         h1 {
@@ -52,22 +48,48 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px var(--accent-glow);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
         }
 
-        header p {
+        /* Contact Links */
+        .contact-links {
             font-size: 1.1rem;
-            margin: 0.2rem 0;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        a {
+        .contact-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            background: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+            color: var(--accent-glow);
+        }
+
+        a.social-link {
             color: var(--accent-glow);
             text-decoration: none;
             transition: text-shadow 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        a:hover {
-            text-shadow: 0 0 8px var(--accent-glow);
+        a.social-link:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         /* Main Container */
@@ -80,19 +102,19 @@
         /* Card Sections */
         section {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 2.5rem;
             margin-bottom: 2rem;
             transition: all 0.4s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         section:hover {
             transform: translateY(-5px);
             border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
         }
 
         h2 {
@@ -124,17 +146,19 @@
         }
 
         .skill-tag {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.05);
             color: var(--accent-glow);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 20px;
             font-size: 0.9rem;
             border: 1px solid rgba(56, 189, 248, 0.3);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
         .skill-tag:hover {
             background: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
         ul {
@@ -142,99 +166,206 @@
         }
         
         li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
     </style>
 </head>
 <body>
 
+    <canvas id="network-canvas"></canvas>
+
     <header>
-        <h1>Rahul Bose [cite: 1]</h1>
-        <p>Bengaluru, Karnataka | +91 6289764787 | rahul.bose1597@gmail.com [cite: 2]</p>
-        <p><a href="https://www.linkedin.com/in/rahul-bose-750645158" target="_blank">LinkedIn Profile [cite: 2]</a></p>
+        <h1>Rahul Bose</h1>
+        <div class="contact-links">
+            <a href="https://maps.google.com/?q=Bengaluru,+Karnataka" target="_blank" title="Open in Google Maps">
+                📍 Bengaluru, Karnataka
+            </a>
+            <a href="tel:+916289764787" title="Click to Call">
+                📞 +91 6289764787
+            </a>
+            <a href="mailto:rahul.bose1597@gmail.com" title="Click to Email">
+                ✉️ rahul.bose1597@gmail.com
+            </a>
+        </div>
+        <p><a href="https://www.linkedin.com/in/rahul-bose-750645158" target="_blank" class="social-link">🔗 LinkedIn Profile</a></p>
     </header>
 
     <div class="container">
         
         <section>
-            <h2>Professional Summary [cite: 3]</h2>
-            <p>AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. [cite: 4] I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. [cite: 5] With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up. [cite: 6]</p>
+            <h2>Professional Summary</h2>
+            <p>AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up.</p>
         </section>
 
         <section>
-            <h2>Technical Skills [cite: 7]</h2>
+            <h2>Technical Skills</h2>
             <div class="skills-grid">
-                <div class="skill-tag">Python, TensorFlow, Keras, LLMs [cite: 8]</div>
-                <div class="skill-tag">Computer Vision & Image Processing [cite: 8]</div>
-                <div class="skill-tag">SVM (Support Vector Machines) [cite: 8]</div>
-                <div class="skill-tag">C/C#, REST APIs, JSON [cite: 9]</div>
-                <div class="skill-tag">Docker, Flask, React, Node.js [cite: 9]</div>
-                <div class="skill-tag">Git/GitHub, JIRA [cite: 9]</div>
-                <div class="skill-tag">SQL, MySQL, MongoDB, PostgreSQL [cite: 10]</div>
-                <div class="skill-tag">ROS (Robotic Operating System) [cite: 11]</div>
-                <div class="skill-tag">Arduino IDE, ESP32, Siemens PLC [cite: 11]</div>
-                <div class="skill-tag">KUKA, Festo Hydraulics/Pneumatics [cite: 11]</div>
-                <div class="skill-tag">MATLAB [cite: 11]</div>
+                <div class="skill-tag">Python, TensorFlow, Keras, LLMs</div>
+                <div class="skill-tag">Computer Vision & Image Processing</div>
+                <div class="skill-tag">SVM (Support Vector Machines)</div>
+                <div class="skill-tag">C/C#, REST APIs, JSON</div>
+                <div class="skill-tag">Docker, Flask, React, Node.js</div>
+                <div class="skill-tag">Git/GitHub, JIRA</div>
+                <div class="skill-tag">SQL, MySQL, MongoDB, PostgreSQL</div>
+                <div class="skill-tag">ROS (Robotic Operating System)</div>
+                <div class="skill-tag">Arduino IDE, ESP32, Siemens PLC</div>
+                <div class="skill-tag">KUKA, Festo Hydraulics/Pneumatics</div>
+                <div class="skill-tag">MATLAB</div>
             </div>
         </section>
 
         <section>
-            <h2>Professional Experience [cite: 12]</h2>
+            <h2>Professional Experience</h2>
             
-            <h3>Cerebronics Technologies Pvt Ltd. | Bengaluru, Karnataka [cite: 13]</h3>
-            <p class="subtitle">Robotics Engineer (Trainee) | Feb 2024 - May 2024 [cite: 14]</p>
+            <h3>Cerebronics Technologies Pvt Ltd. | Bengaluru, Karnataka</h3>
+            <p class="subtitle">Robotics Engineer (Trainee) | Feb 2024 - May 2024</p>
             <ul>
-                <li>Physically built and wired the structure and control systems for a 6-axis robotic arm. [cite: 15]</li>
-                <li>Wrote the core programming for ESP32 microcontrollers using the Arduino IDE to handle precise mechanical movements. [cite: 16]</li>
-                <li>Integrated an ESP32 CAM module to capture live object photos and securely upload that data to cloud storage. [cite: 17]</li>
-                <li>Applied ROS (Robotic Operating System) and AI principles to smooth out and improve the system's automated movements. [cite: 18]</li>
+                <li>Physically built and wired the structure and control systems for a 6-axis robotic arm.</li>
+                <li>Wrote the core programming for ESP32 microcontrollers using the Arduino IDE to handle precise mechanical movements.</li>
+                <li>Integrated an ESP32 CAM module to capture live object photos and securely upload that data to cloud storage.</li>
+                <li>Applied ROS (Robotic Operating System) and AI principles to smooth out and improve the system's automated movements.</li>
             </ul>
 
             <br>
-            <h3>APLG Info Solutions | Hyderabad, Telangana [cite: 19]</h3>
-            <p class="subtitle">Project Trainee (Intern) | May 2021 - Sep 2021 [cite: 20]</p>
+            <h3>APLG Info Solutions | Hyderabad, Telangana</h3>
+            <p class="subtitle">Project Trainee (Intern) | May 2021 - Sep 2021</p>
             <ul>
-                <li>Wrote the foundational sample code for an AI application utilizing MATLAB's robust image processing tools. [cite: 21]</li>
-                <li>Built a Support Vector Machine (SVM) model capable of detecting and classifying human facial emotions, such as happiness, sadness, and anger. [cite: 22]</li>
-                <li>Used local directional patterns to accurately extract facial features across varying lighting conditions and different face regions. [cite: 23]</li>
+                <li>Wrote the foundational sample code for an AI application utilizing MATLAB's robust image processing tools.</li>
+                <li>Built a Support Vector Machine (SVM) model capable of detecting and classifying human facial emotions, such as happiness, sadness, and anger.</li>
+                <li>Used local directional patterns to accurately extract facial features across varying lighting conditions and different face regions.</li>
             </ul>
 
             <br>
-            <h3>Independent AI Development [cite: 24]</h3>
-            <p class="subtitle">Independent AI Engineer | 2024 - Present [cite: 24]</p>
+            <h3>Independent AI Development</h3>
+            <p class="subtitle">Independent AI Engineer | 2024 - Present</p>
             <ul>
-                <li><strong>Full-Stack Web Applications:</strong> Built and successfully deployed interactive web apps using Flask, React, and Node.js, relying on Docker to keep the environments neatly managed. [cite: 25]</li>
-                <li><strong>Conversational AI:</strong> Designed and seamlessly integrated AI chatbots using the Gemini API to help automate user responses and streamline daily interactions. [cite: 26]</li>
-                <li><strong>Data Analysis Systems:</strong> Scripted custom machine learning codes dedicated to smart system monitoring and predictive data analysis. [cite: 27]</li>
+                <li><strong>Full-Stack Web Applications:</strong> Built and successfully deployed interactive web apps using Flask, React, and Node.js, relying on Docker to keep the environments neatly managed.</li>
+                <li><strong>Conversational AI:</strong> Designed and seamlessly integrated AI chatbots using the Gemini API to help automate user responses and streamline daily interactions.</li>
+                <li><strong>Data Analysis Systems:</strong> Scripted custom machine learning codes dedicated to smart system monitoring and predictive data analysis.</li>
             </ul>
         </section>
 
         <section>
-            <h2>Academic Projects [cite: 28]</h2>
+            <h2>Academic Projects</h2>
             <ul>
-                <li><strong>Hyper Security System (IoT & AI):</strong> Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. [cite: 29] I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands. [cite: 30]</li>
-                <li><strong>Automated Medical Dispenser:</strong> Built an automatic medicine dispenser from scratch using an Arduino Mega 2560 and a GSM module. [cite: 31] Programmed it to safely dispense pills and play audio alerts at scheduled times, specifically designed to help dementia patients stay on track with their medication. [cite: 32]</li>
-                <li><strong>i-Stick (Smart Mobility Aid):</strong> Built a sensory walking stick for visually impaired individuals using an Arduino Nano, three ultrasonic sensors, and miniature vibration feedback motors. [cite: 33] Programmed the device to provide distinct directional vibration patterns, allowing the user to easily detect and navigate around nearby obstacles. [cite: 34]</li>
+                <li><strong>Hyper Security System (IoT & AI):</strong> Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands.</li>
+                <li><strong>Automated Medical Dispenser:</strong> Built an automatic medicine dispenser from scratch using an Arduino Mega 2560 and a GSM module. Programmed it to safely dispense pills and play audio alerts at scheduled times, specifically designed to help dementia patients stay on track with their medication.</li>
+                <li><strong>i-Stick (Smart Mobility Aid):</strong> Built a sensory walking stick for visually impaired individuals using an Arduino Nano, three ultrasonic sensors, and miniature vibration feedback motors. Programmed the device to provide distinct directional vibration patterns, allowing the user to easily detect and navigate around nearby obstacles.</li>
             </ul>
         </section>
 
         <section>
-            <h2>Education [cite: 35]</h2>
+            <h2>Education</h2>
             <ul>
-                <li><strong>B.Tech in Mechatronics</strong> | Kalinga Institute of Industrial Technology, Bhubaneswar | CGPA: 7.73 | 2019-2022. [cite: 36]</li>
-                <li><strong>Diploma in Mechatronics</strong> | Central Tool Room and Training Centre, Bhubaneswar | CGPA: 6.0 | 2015-2018. [cite: 37]</li>
+                <li><strong>B.Tech in Mechatronics</strong> | Kalinga Institute of Industrial Technology, Bhubaneswar | CGPA: 7.73 | 2019-2022.</li>
+                <li><strong>Diploma in Mechatronics</strong> | Central Tool Room and Training Centre, Bhubaneswar | CGPA: 6.0 | 2015-2018.</li>
             </ul>
         </section>
 
         <section>
-            <h2>Awards & Certifications [cite: 38]</h2>
+            <h2>Awards & Certifications</h2>
             <ul>
-                <li><strong>Robotics Awards:</strong> Acquired 1st Position in Defence Bot and 3rd Position in Robo-War at CTTC Robotics Events, Bhubaneswar. [cite: 39]</li>
-                <li><strong>State Award:</strong> Received the "Rajya Puraskar" in Bharat Scouts & Guides from the Honorable Governor of Odisha. [cite: 40]</li>
-                <li><strong>Certifications:</strong> Improving Deep Neural Networks (Coursera), Mechanical Design Associate (Dassault Systemes Solidworks), TensorFlow, Keras, SQL, GIT/GitHub, Azure AI-900, and Prompt Engineering Basics. [cite: 41]</li>
+                <li><strong>Robotics Awards:</strong> Acquired 1st Position in Defence Bot and 3rd Position in Robo-War at CTTC Robotics Events, Bhubaneswar.</li>
+                <li><strong>State Award:</strong> Received the "Rajya Puraskar" in Bharat Scouts & Guides from the Honorable Governor of Odisha.</li>
+                <li><strong>Certifications:</strong> Improving Deep Neural Networks (Coursera), Mechanical Design Associate (Dassault Systemes Solidworks), TensorFlow, Keras, SQL, GIT/GitHub, Azure AI-900, and Prompt Engineering Basics.</li>
             </ul>
         </section>
 
     </div>
+
+    <script>
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Configuration
+        const particleCount = 70;
+        const connectionDistance = 150;
+        const particleSpeed = 0.5;
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * particleSpeed;
+                this.vy = (Math.random() - 0.5) * particleSpeed;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.8)';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Update and draw particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connecting lines (Neural Network effect)
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        // Opacity based on distance
+                        const opacity = 1 - (distance / connectionDistance);
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.5})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // Initialize
+        resizeCanvas();
+        initParticles();
+        animate();
+    </script>
 </body>
 </html>
