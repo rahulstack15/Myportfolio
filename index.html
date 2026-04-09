@@ -1,513 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Bose - AI & Mechatronics Engineer</title>
-    <style>
-        :root {
-            --bg-color: #0b1120;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent-glow: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahul Bose — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-muted);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  :root {
+    --bg: #f7f5f0;
+    --ink: #1a1814;
+    --muted: #8a8478;
+    --line: #e0ddd6;
+    --soft: #4a4540;
+  }
 
-        /* Neural Network Canvas Background */
-        #network-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Header Styling */
-        header {
-            text-align: center;
-            padding: 2rem 1rem 2rem;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, transparent 100%);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-        }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        /* Profile Picture */
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(56, 189, 248, 0.6);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
-            margin: 0 auto 1.5rem;
-            display: block;
-            transition: all 0.3s ease;
-        }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem 8rem;
+  }
 
-        .profile-pic:hover {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.9);
-            transform: scale(1.05);
-        }
+  /* ── HEADER ── */
+  header {
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--line);
+  }
 
-        h1 {
-            color: var(--text-main);
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-        }
+  .headline {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
 
-        /* Contact Links */
-        .contact-links {
-            font-size: 1.1rem;
-            margin: 1rem 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+  h1 {
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 1.4rem;
+  }
 
-        .contact-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+  h1 em { font-style: italic; color: var(--muted); }
 
-        .contact-links a:hover {
-            background: rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            transform: translateY(-2px);
-            color: var(--accent-glow);
-        }
+  .summary {
+    font-size: 1rem;
+    color: var(--soft);
+    line-height: 1.75;
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
 
-        a.social-link {
-            color: var(--accent-glow);
-            text-decoration: none;
-            transition: text-shadow 0.3s ease;
-            font-size: 1.1rem;
-        }
+  /* ── CONTACT ── */
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-        a.social-link:hover {
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.38rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    transition: color 0.18s, border-color 0.18s, background 0.18s;
+  }
 
-        /* Main Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+  .contact-item:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+    background: rgba(26,24,20,0.04);
+  }
 
-        /* Card Sections */
-        section {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
+  .contact-item svg {
+    width: 12px; height: 12px;
+    stroke: currentColor; fill: none;
+    stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
 
-        section:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-        }
+  /* ── SECTION ── */
+  section { margin-bottom: 3.5rem; }
 
-        h2 {
-            color: var(--text-main);
-            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-            font-weight: 300;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+  h2 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-        h3 {
-            color: var(--accent-glow);
-            margin-bottom: 0.2rem;
-        }
+  h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-        .subtitle {
-            font-size: 0.9rem;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
+  /* ── SKILLS ── */
+  .skill-row {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.92rem;
+    margin-bottom: 0.6rem;
+    align-items: baseline;
+  }
 
-        /* Skills Tags */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
+  .skill-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    min-width: 108px;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
 
-        .skill-tag {
-            background: rgba(56, 189, 248, 0.05);
-            color: var(--accent-glow);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            transition: all 0.3s ease;
-            cursor: default;
-        }
+  .skill-val { color: var(--ink); line-height: 1.55; }
 
-        .skill-tag:hover {
-            background: rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-        }
+  /* ── EXPERIENCE ── */
+  .exp-item { margin-bottom: 2.4rem; }
+  .exp-item:last-child { margin-bottom: 0; }
 
-        ul {
-            padding-left: 1.2rem;
-        }
-        
-        li {
-            margin-bottom: 0.6rem;
-        }
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+  }
 
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(11, 17, 32, 0.9);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.4);
-            box-shadow: 0 4px 30px rgba(56, 189, 248, 0.3);
-        }
+  .exp-role { font-weight: 500; font-size: 1rem; }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    font-weight: 300;
+    color: var(--muted);
+    white-space: nowrap;
+  }
 
-        .nav-item {
-            position: relative;
-        }
+  .exp-co {
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0.65rem;
+  }
 
-        .nav-link {
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: block;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-        }
+  .bullets { list-style: none; }
 
-        .nav-link:hover {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(56, 189, 248, 0.3) 100%);
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), 0 0 50px rgba(56, 189, 248, 0.3);
-            transform: translateY(-3px);
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
+  .bullets li {
+    font-size: 0.9rem;
+    color: var(--soft);
+    line-height: 1.65;
+    padding-left: 1.1rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+  }
 
-        .nav-link:active {
-            transform: translateY(0);
-        }
+  .bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--line); font-size: 0.78rem;
+  }
 
-        /* Body padding for fixed navbar */
-        body {
-            padding-top: 70px;
-        }
+  /* ── PROJECTS ── */
+  .project { padding-left: 1rem; border-left: 1px solid var(--line); margin-bottom: 1.6rem; transition: border-color 0.2s; }
+  .project:last-child { margin-bottom: 0; }
+  .project:hover { border-left-color: var(--ink); }
+  .proj-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .proj-desc { font-size: 0.88rem; color: var(--soft); line-height: 1.65; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+  .ptag {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; font-weight: 300;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 2px;
+    padding: 0.12rem 0.45rem;
+  }
 
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.1rem;
+  }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-deg { font-weight: 500; font-size: 0.95rem; }
+  .edu-school { font-style: italic; font-size: 0.85rem; color: var(--muted); }
+  .edu-meta { text-align: right; flex-shrink: 0; }
+  .edu-gpa { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--ink); }
+  .edu-yr { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); }
 
-        /* Section IDs for navigation */
-        #summary, #skills, #experience, #projects, #education, #awards {
-            scroll-margin-top: 80px;
-        }
+  /* ── CERTS ── */
+  .certs-group { margin-bottom: 1.1rem; }
+  .certs-group:last-child { margin-bottom: 0; }
+  .group-lbl {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.55rem;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chip {
+    font-size: 0.82rem; color: var(--ink); border: 1px solid var(--line);
+    border-radius: 2px; padding: 0.22rem 0.65rem;
+    transition: border-color 0.18s;
+  }
+  .chip:hover { border-color: var(--ink); }
 
-        /* Responsive navigation */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0.8rem 1rem;
-            }
-            
-            .nav-menu {
-                gap: 0.3rem;
-            }
-            
-            .nav-link {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.7rem;
-            }
-            
-            body {
-                padding-top: 60px;
-            }
+  /* ── FOOTER ── */
+  footer {
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
 
-            /* Adjust profile picture for mobile */
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 1rem;
-            }
+  /* ── ANIMATIONS ── */
+  .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade.in { opacity: 1; transform: none; }
 
-            header {
-                padding: 1.5rem 1rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+  @media (max-width: 580px) {
+    .page { padding: 3rem 1.4rem 6rem; }
+    .skill-row { flex-direction: column; gap: 0.15rem; }
+    .skill-key { min-width: unset; }
+    .exp-head { flex-direction: column; gap: 0.15rem; }
+    .edu-item { flex-direction: column; gap: 0.15rem; }
+    .edu-meta { text-align: left; }
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-    <canvas id="network-canvas"></canvas>
+  <!-- HEADER -->
+  <header class="fade">
+    <p class="headline">AI / ML Engineer &nbsp;·&nbsp; Bengaluru, India</p>
+    <h1>Rahul <em>Bose</em></h1>
+    <p class="summary">Mechatronics graduate building practical AI systems, computer vision pipelines, and full-stack applications — comfortable across the full stack, from ESP32 firmware to deployed LLM services.</p>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul class="nav-menu">
-            <li class="nav-item"><a href="#summary" class="nav-link">Summary</a></li>
-            <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-            <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-            <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-            <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
-            <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
-        </ul>
+    <nav class="contact-row" aria-label="Contact information">
+
+      <a class="contact-item" href="tel:+916289764787" aria-label="Call Rahul Bose at +91 62897 64787">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91 62897 64787
+      </a>
+
+      <a class="contact-item" href="mailto:rahul.bose1597@gmail.com" aria-label="Email Rahul Bose">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        rahul.bose1597@gmail.com
+      </a>
+
+      <a class="contact-item" href="https://maps.google.com/?q=Bengaluru,Karnataka,India" target="_blank" rel="noopener" aria-label="View Bengaluru on Google Maps">
+        <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bengaluru, Karnataka
+      </a>
+
+      <a class="contact-item" href="https://linkedin.com/in/rahul-bose-750645158" target="_blank" rel="noopener" aria-label="Rahul Bose on LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5a6 6 0 0 1 2-1.5Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+
     </nav>
+  </header>
 
-    <header>
-        <img src="Untitled.jpeg" alt="Rahul Bose Profile Picture" class="profile-pic">
-        <h1>Rahul Bose</h1>
-        <div class="contact-links">
-            <a href="https://maps.google.com/?q=Bengaluru,+Karnataka" target="_blank" title="Open in Google Maps">
-                📍 Bengaluru, Karnataka
-            </a>
-            <a href="tel:+916289764787" title="Click to Call">
-                📞 +91 6289764787
-            </a>
-            <a href="mailto:rahul.bose1597@gmail.com" title="Click to Email">
-                ✉️ rahul.bose1597@gmail.com
-            </a>
-        </div>
-        <p><a href="https://www.linkedin.com/in/rahul-bose-750645158" target="_blank" class="social-link">🔗 LinkedIn Profile</a></p>
+  <!-- SKILLS -->
+  <section class="fade" aria-labelledby="s-skills">
+    <h2 id="s-skills">Skills</h2>
+    <div class="skill-row"><span class="skill-key">AI / ML</span><span class="skill-val">Python, TensorFlow, Keras, NumPy, SVM, Computer Vision, LLMs, Prompt Engineering, Image Processing</span></div>
+    <div class="skill-row"><span class="skill-key">Web & Backend</span><span class="skill-val">Flask, React, Node.js, REST APIs, JSON, Docker, Supabase, Clerk</span></div>
+    <div class="skill-row"><span class="skill-key">Cloud & AI Tools</span><span class="skill-val">GCP, Azure AI, Google AI Studio, Gemini API, Claude</span></div>
+    <div class="skill-row"><span class="skill-key">Databases</span><span class="skill-val">MySQL, MongoDB</span></div>
+    <div class="skill-row"><span class="skill-key">Robotics & IoT</span><span class="skill-val">ROS, Arduino IDE, ESP32, KUKA, Siemens PLC, MATLAB, AutoCad/Pro-E, Festo Hydraulics</span></div>
+    <div class="skill-row"><span class="skill-key">Dev Tools</span><span class="skill-val">Git/GitHub, JIRA, C/C#</span></div>
+  </section>
 
-    <div class="container">
-        
-        <section id="summary">
-            <h2>Professional Summary</h2>
-            <p>AI Engineer and Mechatronics graduate who loves bridging the gap between physical hardware and software systems. I am deeply passionate about building practical, real-world AI, computer vision, and IoT solutions. With strong hands-on experience in Python, TensorFlow, and LLMs, I have a proven track record of developing smart automation systems, machine learning models, and web applications from the ground up.</p>
-        </section>
+  <!-- EXPERIENCE -->
+  <section class="fade" aria-labelledby="s-exp">
+    <h2 id="s-exp">Experience</h2>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-tag">Python Coding, TensorFlow, Keras, LLMs, RAG Architecture</div>
-                <div class="skill-tag">Computer Vision & Image Processing</div>
-                <div class="skill-tag">SVM (Support Vector Machines)</div>
-                <div class="skill-tag">REST APIs, FAST APIs</div>
-                <div class="skill-tag">Docker, Flask, React, Node.js</div>
-                <div class="skill-tag">Git/GitHub, JIRA</div>
-                <div class="skill-tag">Azure AI</div>
-                <div class="skill-tag">SQL, MySQL, MongoDB, PostgreSQL</div>
-                <div class="skill-tag">ROS (Robotic Operating System)</div>
-                <div class="skill-tag">Arduino IDE, ESP32, Siemens PLC</div>
-                <div class="skill-tag">KUKA, Festo Hydraulics/Pneumatics</div>
-                <div class="skill-tag">MATLAB</div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            
-            <h3>Cerebronics Technologies Pvt Ltd. | Bengaluru, Karnataka</h3>
-            <p class="subtitle">Robotics Engineer (Trainee) | Feb 2024-May 2024</p>
-            <ul>
-                <li>Physically built and wired the structure and control systems for a 6-axis robotic arm.</li>
-                <li>Wrote the core programming for ESP32 microcontrollers using the Arduino IDE to handle precise mechanical movements.</li>
-                <li>Integrated an ESP32 CAM module to capture live object photos and securely upload that data to cloud storage.</li>
-                <li>Applied ROS (Robotic Operating System) and AI principles to smooth out and improve the system's automated movements.</li>
-            </ul>
-
-            <br>
-            <h3>APLG Info Solutions | Hyderabad, Telangana</h3>
-            <p class="subtitle">Project Trainee (Intern) | May 2021-Sep 2021</p>
-            <ul>
-                <li>Wrote the foundational sample code for an AI application utilizing MATLAB's robust image processing tools.</li>
-                <li>Built a Support Vector Machine (SVM) model capable of detecting and classifying human facial emotions, such as happiness, sadness, and anger.</li>
-                <li>Used local directional patterns to accurately extract facial features across varying lighting conditions and different face regions.</li>
-            </ul>
-
-            <br>
-            <h3>Independent AI Development</h3>
-            <p class="subtitle">Independent AI Engineer | 2024-Present</p>
-            <ul>
-                <li><strong>Full-Stack Web Applications:</strong> Built and successfully deployed interactive web apps using Flask, React, and Node.js, relying on Docker to keep the environments neatly managed.</li>
-                <li><strong>Conversational AI:</strong> Designed and seamlessly integrated AI chatbots using the Gemini API to help automate user responses and streamline daily interactions.</li>
-                <li><strong>Data Analysis Systems:</strong> Scripted custom machine learning codes dedicated to smart system monitoring and predictive data analysis.</li>
-            </ul>
-        </section>
-
-        <section id="projects">
-            <h2>Academic Projects</h2>
-            <ul>
-                <li><strong>Hyper Security System (IoT & AI):</strong> Developed a smart security lock that can be controlled manually, automatically, or straight from a web interface. I combined ESP32, RFID, and WiFi modules using Python, and set up a Telegram chatbot to instantly send photos of access attempts and receive remote lock/unlock commands.</li>
-                <li><strong>Automated Medical Dispenser:</strong> Built an automatic medicine dispenser from scratch using an Arduino Mega 2560 and a GSM module. Programmed it to safely dispense pills and play audio alerts at scheduled times, specifically designed to help dementia patients stay on track with their medication.</li>
-                <li><strong>i-Stick (Smart Mobility Aid):</strong> Built a sensory walking stick for visually impaired individuals using an Arduino Nano, three ultrasonic sensors, and miniature vibration feedback motors. Programmed the device to provide distinct directional vibration patterns, allowing the user to easily detect and navigate around nearby obstacles.</li>
-            </ul>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            <ul>
-                <li><strong>B.Tech in Mechatronics</strong> | Kalinga Institute of Industrial Technology, Bhubaneswar | CGPA: 7.73 | 2019-2022.</li>
-                <li><strong>Diploma in Mechatronics</strong> | Central Tool Room and Training Centre, Bhubaneswar | CGPA: 6.0 | 2015-2018.</li>
-            </ul>
-        </section>
-
-        <section id="awards">
-            <h2>Awards & Certifications</h2>
-            <ul>
-                <li><strong>Robotics Awards:</strong> Acquired 1st Position in Defence Bot and 3rd Position in Robo-War at CTTC Robotics Events, Bhubaneswar.</li>
-                <li><strong>State Award:</strong> Received the "Rajya Puraskar" in Bharat Scouts & Guides from the Honorable Governor of Odisha.</li>
-                <li><strong>Certifications:</strong> Improving Deep Neural Networks (Coursera), Mechanical Design Associate (Dassault Systemes Solidworks), TensorFlow, Keras, SQL, GIT/GitHub, Azure AI-900, and Prompt Engineering Basics.</li>
-            </ul>
-        </section>
-
+    <div class="exp-item">
+      <div class="exp-head">
+        <span class="exp-role">AI Engineer</span>
+        <span class="exp-date">June 2024 — Present</span>
+      </div>
+      <div class="exp-co">Freelance / Independent</div>
+      <ul class="bullets">
+        <li>Developed and deployed 3+ full-stack web applications using Flask, React, and Node.js with containerised Docker environments, cutting deployment setup time by ~60%.</li>
+        <li>Integrated Gemini API and Claude to build conversational AI chatbots automating ~80% of routine user response workflows.</li>
+        <li>Built custom ML scripts for predictive system monitoring and anomaly detection, outperforming rule-based baselines.</li>
+      </ul>
     </div>
 
-    <script>
-        const canvas = document.getElementById('network-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        let width, height;
-        let particles = [];
-        
-        // Configuration - Optimized for smooth performance
-        const particleCount = 50;
-        const connectionDistance = 120;
-        const particleSpeed = 0.3;
+    <div class="exp-item">
+      <div class="exp-head">
+        <span class="exp-role">Robotics Engineer (Trainee)</span>
+        <span class="exp-date">Feb 2024 — May 2024</span>
+      </div>
+      <div class="exp-co">Cerebronics Technologies Pvt Ltd, Bengaluru</div>
+      <ul class="bullets">
+        <li>Designed and assembled the complete electrical and mechanical structure of a 6-axis robotic arm from scratch.</li>
+        <li>Programmed ESP32 microcontrollers via Arduino IDE for servo control; integrated ESP32-CAM for live cloud object capture.</li>
+        <li>Applied ROS and AI-driven motion smoothing to improve arm movement repeatability.</li>
+      </ul>
+    </div>
 
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
+    <div class="exp-item">
+      <div class="exp-head">
+        <span class="exp-role">Project Trainee (Intern)</span>
+        <span class="exp-date">May 2021 — Sep 2021</span>
+      </div>
+      <div class="exp-co">APLG Info Solutions, Hyderabad</div>
+      <ul class="bullets">
+        <li>Built a facial emotion recognition system in MATLAB using SVM with LDP feature extraction — classifying 5 emotion classes reliably under variable lighting.</li>
+      </ul>
+    </div>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * particleSpeed;
-                this.vy = (Math.random() - 0.5) * particleSpeed;
-                this.radius = Math.random() * 2 + 1;
-            }
+  </section>
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
+  <!-- PROJECTS -->
+  <section class="fade" aria-labelledby="s-proj">
+    <h2 id="s-proj">Projects</h2>
 
-                // Bounce off edges
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
+    <div class="project">
+      <div class="proj-name">Hyper Security System</div>
+      <div class="proj-desc">Smart IoT lock combining ESP32, RFID, and Wi-Fi with a Telegram chatbot — enabling remote access control, intrusion photo capture, and real-time lock/unlock commands via a web interface.</div>
+      <div class="proj-tags"><span class="ptag">ESP32</span><span class="ptag">RFID</span><span class="ptag">Python</span><span class="ptag">Telegram API</span><span class="ptag">IoT</span></div>
+    </div>
 
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                // Brighter particle color
-                ctx.fillStyle = 'rgba(100, 220, 255, 1)';
-                ctx.fill();
-            }
-        }
+    <div class="project">
+      <div class="proj-name">Automated Medical Dispenser</div>
+      <div class="proj-desc">Arduino Mega-based pill dispenser with GSM alerts and scheduled audio reminders for dementia patients, reducing manual caregiver dependency.</div>
+      <div class="proj-tags"><span class="ptag">Arduino Mega</span><span class="ptag">GSM Module</span><span class="ptag">C++</span><span class="ptag">Embedded</span></div>
+    </div>
 
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
+    <div class="project">
+      <div class="proj-name">i-Stick — Smart Mobility Aid</div>
+      <div class="proj-desc">Walking stick for visually impaired users built with Arduino Nano and 3 ultrasonic sensors — delivering distinct directional vibration patterns to detect and navigate obstacles.</div>
+      <div class="proj-tags"><span class="ptag">Arduino Nano</span><span class="ptag">Ultrasonic</span><span class="ptag">Haptics</span><span class="ptag">Embedded C</span></div>
+    </div>
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
+  </section>
 
-            // Update and draw particles
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+  <!-- EDUCATION -->
+  <section class="fade" aria-labelledby="s-edu">
+    <h2 id="s-edu">Education</h2>
 
-            // Draw connecting lines (Neural Network effect) - optimized
-            ctx.beginPath();
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+    <div class="edu-item">
+      <div><div class="edu-deg">B.Tech in Mechatronics</div><div class="edu-school">Kalinga Institute of Industrial Technology, Bhubaneswar</div></div>
+      <div class="edu-meta"><div class="edu-gpa">CGPA 7.73</div><div class="edu-yr">2019 – 2022</div></div>
+    </div>
 
-                    if (distance < connectionDistance) {
-                        const opacity = 1 - (distance / connectionDistance);
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(100, 220, 255, ${opacity * 0.6})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                        ctx.beginPath();
-                    }
-                }
-            }
+    <div class="edu-item">
+      <div><div class="edu-deg">Diploma in Mechatronics</div><div class="edu-school">Central Tool Room &amp; Training Centre, Bhubaneswar</div></div>
+      <div class="edu-meta"><div class="edu-gpa">CGPA 6.0</div><div class="edu-yr">2015 – 2018</div></div>
+    </div>
 
-            requestAnimationFrame(animate);
-        }
+    <div class="edu-item">
+      <div><div class="edu-deg">Secondary Education</div><div class="edu-school">Modern Public School</div></div>
+      <div class="edu-meta"><div class="edu-gpa">CGPA 6.4</div><div class="edu-yr">2014</div></div>
+    </div>
 
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
-        });
+  </section>
 
-        // Initialize
-        resizeCanvas();
-        initParticles();
-        animate();
-    </script>
+  <!-- CERTIFICATIONS & AWARDS -->
+  <section class="fade" aria-labelledby="s-cert">
+    <h2 id="s-cert">Certifications &amp; Awards</h2>
+
+    <div class="certs-group">
+      <div class="group-lbl">Certifications</div>
+      <div class="chips">
+        <span class="chip">Improving Deep Neural Networks (Coursera)</span>
+        <span class="chip">Azure AI-900</span>
+        <span class="chip">TensorFlow</span>
+        <span class="chip">Keras</span>
+        <span class="chip">Mechanical Design Associate — SolidWorks</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Git / GitHub</span>
+        <span class="chip">Prompt Engineering Basics</span>
+      </div>
+    </div>
+
+    <div class="certs-group">
+      <div class="group-lbl">Awards</div>
+      <div class="chips">
+        <span class="chip">1st Place — Defence Bot, CTTC Robotics</span>
+        <span class="chip">3rd Place — Robo-War, CTTC</span>
+        <span class="chip">Rajya Puraskar — Bharat Scouts &amp; Guides</span>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="fade">
+    <p>Rahul Bose &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; 2025</p>
+  </footer>
+
+</div>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.fade').forEach((el, i) => {
+    el.style.transitionDelay = i * 0.06 + 's';
+    obs.observe(el);
+  });
+</script>
 </body>
 </html>
