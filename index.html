@@ -40,8 +40,7 @@
 
   /* Background Elements */
   #network-canvas {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: 0; pointer-events: none; opacity: 0.8;
   }
 
@@ -56,16 +55,11 @@
   .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10; }
 
   .glass-panel {
-    background: var(--bg-card);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    border-radius: 16px; transition: all 0.3s ease;
+    background: var(--bg-card); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color); border-radius: 16px; transition: all 0.3s ease;
   }
-
   .glass-panel:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px var(--cyan-glow);
+    border-color: var(--border-hover); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px var(--cyan-glow);
     transform: translateY(-2px);
   }
 
@@ -76,10 +70,8 @@
     padding: 0 5%; background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color); z-index: 1000;
   }
-
   .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-decoration: none; }
   .logo span { color: var(--cyan-primary); }
-  
   .nav-links { display: flex; gap: 1.5rem; }
   .nav-item { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
   .nav-item:hover { color: var(--cyan-primary); }
@@ -162,120 +154,66 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* --- CHATBOT UI STYLES --- */
+  /* =========================================
+     CHATBOT WIDGET STYLES (HARDCODED TO SHOW)
+     ========================================= */
   .chat-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--cyan-primary);
-    color: var(--bg-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
-    z-index: 9999;
-    transition: transform 0.3s;
+    position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+    border-radius: 50%; background: var(--cyan-primary); color: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; cursor: pointer; box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+    z-index: 99999; transition: transform 0.3s; border: 2px solid #fff;
   }
   .chat-btn:hover { transform: scale(1.1); }
 
   .chat-window {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 350px;
-    height: 450px;
-    background: rgba(10, 15, 25, 0.95);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0,229,255,0.1);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translateY(20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
+    position: fixed; bottom: 110px; right: 30px; width: 350px; height: 450px;
+    background: rgba(10, 15, 25, 0.98); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color); border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(0,229,255,0.2);
+    z-index: 99999; display: flex; flex-direction: column; overflow: hidden;
+    transform: translateY(20px); opacity: 0; pointer-events: none; transition: all 0.3s ease;
   }
   .chat-window.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+    transform: translateY(0); opacity: 1; pointer-events: auto;
   }
 
   .chat-header {
-    background: rgba(0, 229, 255, 0.1);
-    padding: 15px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
+    background: rgba(0, 229, 255, 0.15); padding: 15px;
+    border-bottom: 1px solid var(--border-color); display: flex;
+    justify-content: space-between; align-items: center; font-weight: bold;
   }
   .chat-header span { color: var(--cyan-primary); }
-  .close-chat { cursor: pointer; color: var(--text-muted); }
+  .close-chat { cursor: pointer; color: var(--text-main); font-size: 1.2rem; }
   .close-chat:hover { color: #ff5f56; }
 
-  .chat-body {
-    flex-grow: 1;
-    padding: 15px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+  .chat-body { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
   .chat-msg {
-    max-width: 80%;
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    word-wrap: break-word;
+    max-width: 85%; padding: 10px 15px; border-radius: 12px; font-size: 0.9rem;
+    line-height: 1.4; word-wrap: break-word;
   }
   .msg-bot {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
+    background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color);
+    color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 2px;
   }
-  .msg-bot a { color: var(--cyan-primary); text-decoration: underline; font-weight: bold;}
-  
+  .msg-bot a { color: var(--cyan-primary); text-decoration: none; font-weight: bold; }
+  .msg-bot a:hover { text-decoration: underline; }
   .msg-user {
-    background: rgba(0, 229, 255, 0.2);
-    color: var(--text-main);
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
+    background: rgba(0, 229, 255, 0.25); color: var(--text-main);
+    align-self: flex-end; border-bottom-right-radius: 2px;
   }
 
   .chat-input-area {
-    display: flex;
-    padding: 15px;
-    border-top: 1px solid var(--border-color);
-    background: rgba(0,0,0,0.2);
+    display: flex; padding: 15px; border-top: 1px solid var(--border-color);
+    background: rgba(0,0,0,0.4);
   }
   .chat-input {
-    flex-grow: 1;
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    outline: none;
-    font-family: inherit;
+    flex-grow: 1; background: transparent; border: none; color: var(--text-main);
+    outline: none; font-family: inherit; font-size: 0.95rem;
   }
   .chat-send {
-    background: transparent;
-    border: none;
-    color: var(--cyan-primary);
-    cursor: pointer;
-    font-weight: bold;
-    padding-left: 10px;
+    background: transparent; border: none; color: var(--cyan-primary);
+    cursor: pointer; font-weight: bold; padding-left: 10px; font-size: 1rem;
   }
 
   /* Responsive Design */
@@ -295,7 +233,8 @@
     .hero-title { font-size: 2.5rem; }
     .timeline { margin-left: 0; padding-left: 1.5rem; }
     .job-header { flex-direction: column; gap: 0.5rem; }
-    .chat-window { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
+    /* Make chat window fit mobile screens */
+    .chat-window { width: calc(100vw - 40px); right: 20px; bottom: 100px; }
   }
 </style>
 </head>
@@ -523,7 +462,7 @@
     </div>
   </div>
   <div class="chat-input-area">
-    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+    <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
     <button class="chat-send" onclick="sendMessage()">Send</button>
   </div>
 </div>
@@ -657,31 +596,29 @@
     const chatBody = document.getElementById('chat-body');
     const msgDiv = document.createElement('div');
     msgDiv.className = `chat-msg ${className}`;
-    msgDiv.innerHTML = text; // Allow HTML for links
+    msgDiv.innerHTML = text;
     chatBody.appendChild(msgDiv);
     chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll to bottom
   }
 
-  // Basic Rule-based matching. 
-  // (You can replace this logic later with a fetch() call to your own Flask/FastAPI backend LLM endpoint!)
   function generateBotResponse(input) {
     if (input.includes('schedule') || input.includes('meeting') || input.includes('call') || input.includes('hire')) {
-      return `I'd be happy to help set that up! You can schedule a meeting directly using this link: <br><br> <a href="mailto:rahul.bose1597@gmail.com?subject=Scheduling a Meeting with Rahul Bose" target="_blank">📅 Request a Meeting</a> <br><br> Or, you can call him right now at <a href="tel:+916289764787">+91 62897 64787</a>.`;
+      return `I'd be happy to help! Schedule a meeting here:<br><br> <a href="mailto:rahul.bose1597@gmail.com?subject=Scheduling a Meeting with Rahul">📅 Request a Meeting</a><br><br>Or call him at <a href="tel:+916289764787">+91 62897 64787</a>.`;
     } 
     else if (input.includes('skill') || input.includes('stack') || input.includes('tech')) {
-      return "Rahul is an AI/ML Engineer with strong skills in Python, TensorFlow, LLMs, Computer Vision, and the MERN/Flask stack for web deployment. He also has a background in Mechatronics and Robotics (ROS, ESP32).";
+      return "Rahul is an AI Engineer skilled in Python, TensorFlow, LLMs, Computer Vision, and the MERN/Flask stack. He also knows Mechatronics and Robotics (ROS, ESP32).";
     }
     else if (input.includes('experience') || input.includes('work')) {
-      return "Rahul has been working as an independent AI Engineer since June 2024, deploying 3+ full-stack apps and integrating LLM APIs. Previously, he was a Robotics Engineer working on 6-axis robotic arms and an AI Project Intern at APLG Info Solutions.";
+      return "Rahul has been an independent AI Engineer since June 2024, deploying 3+ full-stack apps. Previously, he was a Robotics Engineer at Cerebronics Technologies.";
     }
     else if (input.includes('project')) {
-      return "Some of his notable projects include a Hyper Security IoT lock using ESP32, an Automated Medical Dispenser, and a Smart Mobility Aid for the visually impaired. He's very good at bridging software AI with physical hardware!";
+      return "Notable projects include a Hyper Security IoT lock, an Automated Medical Dispenser, and an i-Stick Smart Mobility Aid. He excels at bridging AI with hardware.";
     }
     else if (input.includes('education') || input.includes('degree')) {
-      return "He holds a B.Tech in Mechatronics from Kalinga Institute of Industrial Technology (KIIT), Bhubaneswar, where he graduated with a 7.73 CGPA.";
+      return "He holds a B.Tech in Mechatronics from KIIT, Bhubaneswar, with a 7.73 CGPA.";
     }
     else {
-      return "That's a great question! While I am just a simple web-bot right now, you should definitely ask Rahul that in person. Type <strong>'schedule'</strong> to set up a meeting with him!";
+      return "That's a great question! Type <strong>'schedule'</strong> to set up a meeting with Rahul and ask him directly!";
     }
   }
 </script>
